@@ -34,7 +34,7 @@ class CodeGeneratorDraft04(CodeGenerator):
     }
 
     def __init__(self, definition, resolver=None):
-        super().__init__(definition, resolver)
+        super(CodeGeneratorDraft04, self).__init__(definition, resolver)
         self._json_keywords_to_function.update((
             ('type', self.generate_type),
             ('enum', self.generate_enum),

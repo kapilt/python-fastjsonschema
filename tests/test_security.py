@@ -21,10 +21,9 @@ from fastjsonschema import JsonSchemaDefinitionException, compile
 ])
 def test_not_generate_code_from_definition(schema):
     with pytest.raises(JsonSchemaDefinitionException):
-        compile({
-            '$schema': 'http://json-schema.org/draft-07/schema',
-            **schema
-        })
+        d = dict(schema)
+        d['$schema'] = 'http://json-schema.org/draft-07/schema'
+        compile(d)
 
 
 @pytest.mark.parametrize('schema,value', [
@@ -40,10 +39,9 @@ def test_not_generate_code_from_definition(schema):
     }}, {'validate(10)': '10'}),
 ])
 def test_generate_code_with_proper_variable_names(asserter, schema, value):
-    asserter({
-        '$schema': 'http://json-schema.org/draft-07/schema',
-        **schema
-    }, value, value)
+    d = dict(schema)
+    d['$schema'] = 'http://json-schema.org/draft-07/schema'
+    asserter(d, value, value)
 
 
 def test_generate_code_without_overriding_variables(asserter):

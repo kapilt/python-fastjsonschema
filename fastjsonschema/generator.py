@@ -13,7 +13,7 @@ def enforce_list(variable):
 
 
 # pylint: disable=too-many-instance-attributes,too-many-public-methods
-class CodeGenerator:
+class CodeGenerator(object):
     """
     This class is not supposed to be used directly. Anything
     inside of this class can be changed without noticing.

@@ -9,9 +9,9 @@ Code adapted from https://github.com/Julian/jsonschema
 import contextlib
 import json
 import re
-from urllib import parse as urlparse
-from urllib.parse import unquote
-from urllib.request import urlopen
+from six.moves.urllib import parse as urlparse
+from six.moves.urllib.parse import unquote
+from six.moves.urllib.request import urlopen
 
 
 from .exceptions import JsonSchemaException
@@ -90,7 +90,7 @@ class RefResolver:
         )
 
     @contextlib.contextmanager
-    def in_scope(self, scope: str):
+    def in_scope(self, scope):
         """
         Context manager to handle current scope.
         """
@@ -102,7 +102,7 @@ class RefResolver:
             self.resolution_scope = old_scope
 
     @contextlib.contextmanager
-    def resolving(self, ref: str):
+    def resolving(self, ref):
         """
         Context manager which resolves a JSON ``ref`` and enters the
         resolution scope of this ref.
@@ -139,7 +139,7 @@ class RefResolver:
         name = name.lower().rstrip('_')
         return name
 
-    def walk(self, node: dict):
+    def walk(self, node):
         """
         Walk thru schema and dereferencing ``id`` and ``$ref`` instances
         """

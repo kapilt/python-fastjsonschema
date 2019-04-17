@@ -2,7 +2,7 @@ import json
 from pathlib import Path
 
 import pytest
-from urllib.request import urlopen
+from six.moves.urllib.request import urlopen
 
 from fastjsonschema import RefResolver, JsonSchemaException, compile, _get_code_generator_class
 
